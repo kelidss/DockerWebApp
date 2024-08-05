@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/Docker-Logo.png" alt="Docker Logo">
+        <h1>Docker Tutorial</h1>
+        <p>Aprenda a usar o Docker de maneira simples e prática.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introdução</a></li>
+            <li><a href="#installation">Instalação</a></li>
+            <li><a href="#commands">Comandos Básicos</a></li>
+            <li><a href="#docker-compose">Docker Compose</a></li>
+            <li><a href="#final-tips">Dicas Finais</a></li>
+            <li><a href="#practical-example">Exemplo Prático</a></li>
+        </ul>
+    </nav>
+
+    <section id="introduction">
+        <h2>Introdução ao Docker</h2>
+        <p>Docker é uma ferramenta que simplifica a criação e execução de aplicativos ao colocá-los em containers. Pense em um container como uma caixa que contém tudo o que um aplicativo precisa para funcionar, incluindo o próprio aplicativo, suas dependências e configurações. Isso garante que o aplicativo funcione da mesma forma em qualquer lugar, seja no seu computador, no de um colega ou na nuvem.</p>
+        <p>Essa abordagem facilita o compartilhamento e a portabilidade dos aplicativos, pois qualquer pessoa pode rodar o mesmo container e obter os mesmos resultados. Com Docker, você evita problemas de compatibilidade e configuração, tornando o desenvolvimento e a execução de aplicativos mais rápidos e confiáveis.</p>
+    </section>
+
+    <section id="installation">
+        <h2>Instalação</h2>
+        
+        <h3>Windows</h3>
+        <p>Para instalar o Docker no Windows, siga estes passos:</p>
+        <ol>
+            <li>Acesse a <a href="https://www.docker.com/products/docker-desktop" target="_blank">página de download do Docker Desktop</a>.</li>
+            <li>Baixe o instalador para Windows.</li>
+            <li>Execute o instalador e siga as instruções na tela.</li>
+            <li>Após a instalação, inicie o Docker Desktop e siga as instruções de configuração.</li>
+        </ol>
+    
+        <h3>Mac</h3>
+        <p>Para instalar o Docker no Mac, siga estes passos:</p>
+        <ol>
+            <li>Acesse a <a href="https://www.docker.com/products/docker-desktop" target="_blank">página de download do Docker Desktop</a>.</li>
+            <li>Baixe o instalador para Mac.</li>
+            <li>Abra o arquivo .dmg e arraste o ícone do Docker para a pasta de Aplicativos.</li>
+            <li>Inicie o Docker Desktop a partir da pasta de Aplicativos e siga as instruções de configuração.</li>
+        </ol>
+    
+        <h3>Linux</h3>
+        <p>Para instalar o Docker no Linux, siga estes passos:</p>
+        <ol>
+            <li>Abra um terminal.</li>
+            <li>Atualize o índice de pacotes com o comando:</li>
+            <pre><code>sudo apt-get update</code></pre>
+            <li>Instale o Docker com o comando:</li>
+            <pre><code>sudo apt-get install docker-ce</code></pre>
+            <li>Verifique se o Docker foi instalado corretamente com o comando:</li>
+            <pre><code>docker --version</code></pre>
+            <li>Para permitir que o Docker seja executado sem sudo, adicione seu usuário ao grupo docker:</li>
+            <pre><code>sudo usermod -aG docker $USER</code></pre>
+            <li>Reinicie sua sessão para aplicar as mudanças.</li>
+        </ol>
+    </section>
+    
+    
+    <section id="commands">
+        <h2>Comandos Básicos</h2>
+        <ul>
+            <li><code>docker pull &lt;imagem&gt;</code>: Baixa uma imagem do Docker Hub ou de um registro. Exemplo: <code>docker pull nginx</code></li>
+            <li><code>docker run &lt;opções&gt; &lt;imagem&gt;</code>: Executa um novo container a partir de uma imagem. Exemplo: <code>docker run -d -p 8080:80 nginx</code></li>
+            <li><code>docker ps</code>: Lista os containers em execução. Use <code>-a</code> para listar todos os containers, incluindo os parados.</li>
+            <li><code>docker stop &lt;container_id&gt;</code>: Para um container em execução. Exemplo: <code>docker stop meu-container</code></li>
+            <li><code>docker start &lt;container_id&gt;</code>: Inicia um container parado. Exemplo: <code>docker start meu-container</code></li>
+            <li><code>docker restart &lt;container_id&gt;</code>: Reinicia um container em execução. Exemplo: <code>docker restart meu-container</code></li>
+            <li><code>docker rm &lt;container_id&gt;</code>: Remove um container. Exemplo: <code>docker rm meu-container</code></li>
+            <li><code>docker rmi &lt;imagem&gt;</code>: Remove uma imagem do Docker. Exemplo: <code>docker rmi nginx</code></li>
+            <li><code>docker logs &lt;container_id&gt;</code>: Exibe os logs de um container. Exemplo: <code>docker logs meu-container</code></li>
+            <li><code>docker exec -it &lt;container_id&gt; /bin/bash</code>: Executa um comando dentro de um container em execução, geralmente usado para acessar um terminal interativo. Exemplo: <code>docker exec -it meu-container /bin/bash</code></li>
+            <li><code>docker-compose up</code>: Inicia os serviços definidos em um arquivo <code>docker-compose.yml</code>. Use <code>-d</code> para rodar em segundo plano.</li>
+            <li><code>docker-compose down</code>: Para e remove os containers, redes e volumes definidos no arquivo <code>docker-compose.yml</code>.</li>
+        </ul>
+    </section>
+    
+    <section id="docker-compose">
+        <h2>Docker Compose</h2>
+        <p>O Docker Compose é uma ferramenta que permite definir e gerenciar aplicações multi-container com Docker. Em vez de iniciar containers individualmente, você pode usar um arquivo de configuração chamado <code>docker-compose.yml</code> para descrever todos os serviços, redes e volumes necessários para sua aplicação.</p>
+        <p>Com o Docker Compose, você pode:</p>
+        <ul>
+            <li><strong>Definir Serviços</strong>: Especificar quais containers serão usados e como eles se comunicam.</li>
+            <li><strong>Gerenciar Dependências</strong>: Definir dependências entre serviços, como bancos de dados e aplicativos web.</li>
+            <li><strong>Executar Todos os Serviços</strong>: Usar um único comando para iniciar todos os serviços descritos no arquivo de configuração.</li>
+            <li><strong>Facilitar o Desenvolvimento</strong>: Configurar ambientes de desenvolvimento consistentes e reproduzíveis.</li>
+        </ul>
+        <h3>Exemplo de um arquivo <code>docker-compose.yml</code></h3>
+        <pre><code>version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+</code></pre>
+    </section>
+    
+    <section id="final-tips">
+        <h2>Dicas Finais</h2>
+        <p>Docker é uma ferramenta poderosa que pode transformar a forma como você desenvolve, testa e implanta suas aplicações. Aqui estão algumas dicas finais para aproveitar ao máximo o Docker:</p>
+        <ul>
+            <li><strong>Documente suas Imagens e Containers</strong>: Inclua informações sobre como usar e configurar suas imagens e containers em seus arquivos README.</li>
+            <li><strong>Mantenha suas Imagens Atualizadas</strong>: Regularmente atualize suas imagens base e recompile seus containers para garantir que você tenha as últimas atualizações de segurança.</li>
+            <li><strong>Utilize Volumes para Persistência</strong>: Use volumes para armazenar dados persistentes fora do container, evitando a perda de dados ao remover containers.</li>
+            <li><strong>Teste Seus Containers</strong>: Realize testes abrangentes para garantir que seus containers funcionem como esperado em diferentes ambientes.</li>
+            <li><strong>Monitore o Desempenho</strong>: Use ferramentas de monitoramento para acompanhar o desempenho e o uso de recursos de seus containers.</li>
+        </ul>
+    </section>
+    
+    <section id="practical-example">
+        <h2>Exemplo Prático: Aplicação com Flask e PostgreSQL</h2>
+        <p>Vamos criar um exemplo prático de uma aplicação que utiliza Flask como framework web e PostgreSQL como banco de dados, utilizando Docker para gerenciar o ambiente.</p>
+        
+        <h3>Passo 1: Criar um arquivo <code>Dockerfile</code></h3>
+        <pre><code>FROM python:3.9-slim
+    
+    WORKDIR /app
+    
+    COPY requirements.txt requirements.txt
+    RUN pip install -r requirements.txt
+    
+    COPY . .
+    
+    CMD ["flask", "run", "--host=0.0.0.0"]
+    </code></pre>
+        
+        <h3>Passo 2: Criar um arquivo <code>docker-compose.yml</code></h3>
+        <pre><code>version: '3'
+    services:
+      web:
+        build: .
+        ports:
+          - "5000:5000"
+        environment:
+          - FLASK_APP=app.py
+          - FLASK_ENV=development
+        depends_on:
+          - db
+    
+      db:
+        image: postgres:13
+        environment:
+          POSTGRES_DB: mydatabase
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+        volumes:
+          - db_data:/var/lib/postgresql/data
+    
+    volumes:
+      db_data:
+    </code></pre>
+        
+        <h3>Passo 3: Criar o arquivo <code>requirements.txt</code></h3>
+        <pre><code>Flask
+    psycopg2-binary
+    </code></pre>
+        
+        <h3>Passo 4: Criar o arquivo <code>app.py</code></h3>
+        <pre><code>from flask import Flask
+    import psycopg2
+    
+    app = Flask(__name__)
+    
+    @app.route('/')
+    def hello_world():
+        return 'Hello, Docker!'
+    
+    if __name__ == '__main__':
+        app.run(debug=True)
+    </code></pre>
+        
+        <h3>Passo 5: Rodar o projeto</h3>
+        <pre><code>docker-compose up --build
+    </code></pre>
+        
+        <p>Com esses passos, você terá uma aplicação Flask rodando em um container Docker e um banco de dados PostgreSQL em outro container, todos gerenciados pelo Docker Compose.</p>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2024 Tutorial Docker. Keliane dos Santos Soares.</p>
+    </footer>
+</body>
+</html>
