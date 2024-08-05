@@ -15,4 +15,3 @@ docker-tutorial/
 │   └── style.css
 └── README.md
 
-# DockerWebApp
