@@ -1,11 +1,11 @@
-/* Estilo global */
+
 body, h1, h2, h3, p, ul, ol, li, pre, code {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilo do corpo */
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -15,7 +15,7 @@ body {
     padding: 0;
 }
 
-/* Estilo do cabeçalho */
+
 header {
     background: #333;
     color: #fff;
@@ -35,7 +35,7 @@ header p {
     font-size: 1.2em;
 }
 
-/* Estilo da navegação */
+
 nav {
     background: #0db7ed;
     color: #fff;
@@ -63,7 +63,6 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Estilo das seções */
 section {
     padding: 20px;
     margin: 20px;
@@ -79,7 +78,6 @@ section h2 {
     margin-bottom: 20px;
 }
 
-/* Ajuste de espaçamento para listas e parágrafos */
 section p, section ul, section ol {
     margin-bottom: 20px;
 }
@@ -110,7 +108,6 @@ code {
     font-size: 0.9em;
 }
 
-/* Estilo do rodapé */
 footer {
     background: #333;
     color: #fff;
